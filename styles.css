@@ -1,0 +1,213 @@
+/* Estilo general */
+body {
+    font-family: 'Comic Neue', cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffeef7;
+    color: #4c4c4c;
+}
+
+/* Encabezado */
+header {
+    background: linear-gradient(135deg, #ff87ab, #ff6392);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* Menú de navegación */
+nav {
+    background-color: #ff6392;
+    border-bottom: 3px solid #ff87ab;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 1rem 2rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    background-color: #ff87ab;
+    border-radius: 5px;
+}
+
+/* Secciones */
+section {
+    background-color: white;
+    margin: 2rem auto;
+    padding: 2rem;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones */
+button {
+    background-color: #ff6392;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #ff87ab;
+}
+
+/* Estilo para imágenes */
+img {
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+    background-color: #ff87ab;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Ejemplo de estilo en CSS */
+.texto-estilizado {
+    color: purple;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.caja {
+    background: lightblue;
+    padding: 1rem;
+    border: 2px solid blue;
+    border-radius: 10px;
+}
+
+/* Flexbox */
+.flex-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.flex-container div {
+    background: #ddd;
+    padding: 1rem;
+    border: 1px solid #333;
+    flex: 1;
+    text-align: center;
+}
+
+/* Animación */
+@keyframes girar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.animacion {
+    margin: 1rem auto;
+    width: 100px;
+    height: 100px;
+    background: coral;
+    animation: girar 3s infinite linear;
+    border-radius: 50%;
+}
+
+/* Slider General */
+.slider-auto,
+.slider-manual {
+    overflow: hidden;
+    width: 600px; /* Rectangular horizontal */
+    height: 300px;
+    margin: auto;
+    position: relative;
+}
+
+.slider-auto .slides {
+    display: flex;
+    animation: slide 6s infinite;
+}
+
+.slider-auto img,
+.slider-manual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider-manual .slides-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-manual button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#prev {
+    left: 0;
+}
+
+#next {
+    right: 0;
+}
+
+/* Animación del slider automático */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    33% {
+        transform: translateX(-100%);
+    }
+    66% {
+        transform: translateX(-200%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

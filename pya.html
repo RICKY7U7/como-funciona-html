@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Didáctico: Adivina el Código</title>
+    <style>
+        /* Estilo General */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background: #4CAF50;
+            color: white;
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        /* Contenedor Principal */
+        .game-container {
+            background: white;
+            width: 90%;
+            max-width: 700px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .game-container h2 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Pistas y Código */
+        .hint {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        /* Entrada de Código */
+        #code-input {
+            width: 80%;
+            padding: 1rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Botón */
+        .btn {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #45a049;
+        }
+
+        /* Resultados */
+        .result {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            color: #333;
+        }
+
+        .correct {
+            color: #28a745;
+        }
+
+        .incorrect {
+            color: #dc3545;
+        }
+
+        /* Pie de Página */
+        footer {
+            margin-top: 2rem;
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Juego Didáctico: Adivina el Código</h1>
+    </header>
+
+    <div class="game-container">
+        <h2>¡Adivina el Código!</h2>
+        <p class="hint" id="hint">Cargando pista...</p>
+        
+        <input type="text" id="code-input" placeholder="Escribe tu código aquí...">
+        <button class="btn" id="submit-btn">Enviar Respuesta</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <footer>
+        <p>fin pagina este es el pie</p>
+    </footer>
+
+    <script>
+        const tasks = [
+            {
+                hint: "Declara una variable llamada 'edad' con el valor 25.",
+                correctAnswer: "let edad = 25;",
+            },
+            {
+                hint: "Crea una función que devuelva 'Hola Mundo'.",
+                correctAnswer: "function saludo() { return 'Hola Mundo'; }",
+            },
+            {
+                hint: "Escribe un condicional que imprima 'Mayor de edad' si la edad es mayor o igual a 18.",
+                correctAnswer: "if (edad >= 18) { console.log('Mayor de edad'); }",
+            },
+            {
+                hint: "Declara un array con tres números: 1, 2 y 3.",
+                correctAnswer: "let numeros = [1, 2, 3];",
+            }
+        ];
+
+        let currentTaskIndex = 0;
+
+        // Referencias de elementos
+        const hintElement = document.getElementById('hint');
+        const codeInputElement = document.getElementById('code-input');
+        const submitButton = document.getElementById('submit-btn');
+        const resultElement = document.getElementById('result');
+
+        // Función para cargar una nueva tarea
+        function loadTask() {
+            const currentTask = tasks[currentTaskIndex];
+            hintElement.textContent = currentTask.hint;
+            codeInputElement.value = ''; // Limpiar la entrada de código
+            resultElement.textContent = ''; // Limpiar los resultados
+        }
+
+        // Verificar la respuesta
+        function checkAnswer() {
+            const userAnswer = codeInputElement.value.trim();
+            const correctAnswer = tasks[currentTaskIndex].correctAnswer;
+
+            if (userAnswer === correctAnswer) {
+                resultElement.textContent = '¡Correcto! 🎉';
+                resultElement.className = 'result correct';
+            } else {
+                resultElement.textContent = '¡Incorrecto! Intenta de nuevo.';
+                resultElement.className = 'result incorrect';
+            }
+
+            // Avanzar a la siguiente tarea
+            currentTaskIndex++;
+            if (currentTaskIndex < tasks.length) {
+                setTimeout(loadTask, 1500); // Cargar la siguiente tarea después de 1.5 segundos
+            } else {
+                setTimeout(() => {
+                    alert("¡Felicidades! Has completado el juego. 🎊");
+                    currentTaskIndex = 0; // Reiniciar el juego
+                    loadTask();
+                }, 1500);
+            }
+        }
+
+        // Iniciar juego
+        loadTask();
+
+        // Event listener para el botón de enviar
+        submitButton.addEventListener('click', checkAnswer);
+    </script>
+</body>
+</html>
