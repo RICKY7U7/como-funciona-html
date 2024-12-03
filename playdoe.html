@@ -1,147 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Preguntas Programadoras</title>
-    <style>
+    <title>Juego de Programación</title>
+    <style> 
         /* Estilo General */
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(120deg, #6a11cb, #2575fc);
+            background: linear-gradient(120deg, #6a11cb, #2575fc); /* Fondo morado-azul */
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
-            color: #ffffff;
-            overflow-x: hidden;
+            height: 100vh;
         }
-
+    
         /* Header */
         header {
-            background: rgba(0, 0, 0, 0.3);
-            color: #ffffff;
-            padding: 1rem;
             width: 100%;
+            background: linear-gradient(120deg, #570ea5, #1d58be); /* Fondo morado-azul */
+            color: white;
+            padding: 1rem;
             text-align: center;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Contenedor del Juego */
-        .game-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            width: 90%;
-            max-width: 600px;
-            border-radius: 15px;
-            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
-            padding: 2rem;
-            margin-top: 2rem;
-            text-align: center;
-            color: #ffffff;
-        }
-
-        .game-container h2 {
-            margin-bottom: 1rem;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .question {
             font-size: 1.5rem;
-            margin-bottom: 2rem;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
-
+    
+        /* Contenedor Principal */
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1000px;
+            width: 100%;
+            padding: 20px;
+            flex-grow: 1;
+        }
+    
+        /* Contenedor de la Pregunta */
+        .question-container {
+            width: 60%;
+            background: rgba(255, 255, 255, 0.1); /* Fondo transparente con filtro */
+            backdrop-filter: blur(5px); /* Fondo desenfocado */
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    
+        /* Pregunta */
+        .question-container h2 {
+            color: #000000; /* Morado oscuro */
+            font-size: 1.8rem;
+        }
+    
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+    
         /* Botones */
         .option {
-            background: rgba(255, 255, 255, 0.2);
+            background: #6a0dad; /* Morado oscuro */
             color: white;
-            border: 2px solid #ffffff;
-            padding: 0.8rem 1.5rem;
+            border: none;
+            padding: 0.8rem 1rem;
             margin: 0.5rem;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: transform 0.3s, background 0.3s, color 0.3s;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+            font-size: 1rem;
+            width: 100%;
         }
-
+    
         .option:hover {
-            background: #ffffff;
-            color: #2575fc;
-            transform: scale(1.1);
+            background: #520b8a; /* Morado más oscuro */
         }
-
+    
+        .option:active {
+            transform: scale(0.98);
+        }
+    
         .correct {
-            background: #28a745 !important;
-            color: #ffffff !important;
+            background: #28a745 !important; /* Verde para respuestas correctas */
         }
-
+    
         .incorrect {
-            background: #dc3545 !important;
-            color: #ffffff !important;
+            background: #dc3545 !important; /* Rojo para respuestas incorrectas */
         }
-
-        /* Animación de Cambio de Preguntas */
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
+    
+        /* Contenedor de Puntuación */
+        .score-container {
+            width: 30%;
+            background: linear-gradient(120deg, #570ea5, #1d58be); /* Fondo morado-azul */
+            padding: 2rem;
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-left: 2rem;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+    
+        .score-container h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
         }
-
-        /* Pie de Página */
+    
+        .score-container p {
+            font-size: 1.2rem;
+        }
+    
+        /* Pie de página */
         footer {
-            margin-top: 2rem;
-            background: rgba(0, 0, 0, 0.4);
-            color: #ffffff;
+            margin-top: auto;
+            background: #3c1053; /* Morado más oscuro */
+            color: white;
             text-align: center;
             padding: 1rem;
             width: 100%;
-            box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
+
+    <!-- Header -->
     <header>
         <h1>Juego de Programación</h1>
     </header>
 
-    <div class="game-container">
-        <h2>¡Demuestra tus conocimientos! 🚀</h2>
-        <div id="question-container">
-            <!-- La pregunta irá aquí -->
-            <p class="question fade-in" id="question">Cargando pregunta...</p>
+    <div class="main-container">
+        <!-- Contenedor de Pregunta -->
+        <div class="question-container">
+            <h2>¡Demuestra tus conocimientos! 🚀</h2>
+            <p class="question" id="question">Cargando pregunta...</p>
             <button class="option" id="option1">Opción 1</button>
             <button class="option" id="option2">Opción 2</button>
             <button class="option" id="option3">Opción 3</button>
             <button class="option" id="option4">Opción 4</button>
+        </div>
+
+        <!-- Contenedor de Puntuación -->
+        <div class="score-container">
+            <h3>Puntuación</h3>
+            <p id="score">Puntos: 0</p>
+            <p id="correct">Respuestas Correctas: 0</p>
+            <p id="incorrect">Respuestas Incorrectas: 0</p>
         </div>
     </div>
 
@@ -150,6 +156,7 @@
     </footer>
 
     <script>
+        // Preguntas del juego
         const questions = [
             {
                 question: "¿Qué significa HTML?",
@@ -192,57 +199,121 @@
                 answer: 2
             },
             {
-                question: "¿Qué es una función en programación?",
+                question: "¿Qué significa 'CSS'?",
                 options: [
-                    "Un conjunto de etiquetas HTML",
-                    "Un fragmento de código reutilizable",
-                    "Un error en el sistema",
-                    "Un archivo de configuración"
+                    "Cascading Style Sheets",
+                    "Creative Style Sheets",
+                    "Computer Style Sheets",
+                    "Colorful Style Sheets"
+                ],
+                answer: 0
+            },
+            {
+                question: "¿Cuál de los siguientes es un tipo de dato en JavaScript?",
+                options: [
+                    "Integer",
+                    "Boolean",
+                    "Char",
+                    "String"
                 ],
                 answer: 1
             },
+            {
+                question: "¿Qué hace el operador '===' en JavaScript?",
+                options: [
+                    "Compara solo los valores",
+                    "Compara valores y tipos de datos",
+                    "Suma dos valores",
+                    "Asigna un valor a una variable"
+                ],
+                answer: 1
+            },
+            {
+                question: "¿Cómo se declara una variable en JavaScript?",
+                options: [
+                    "variable = 10",
+                    "var = 10",
+                    "let variable = 10",
+                    "10 = var"
+                ],
+                answer: 2
+            },
+            {
+                question: "¿Qué es el DOM?",
+                options: [
+                    "Un lenguaje de programación",
+                    "Un sistema de bases de datos",
+                    "Una estructura de objetos que representa el HTML",
+                    "Un editor de texto"
+                ],
+                answer: 2
+            },
+            {
+                question: "¿Qué es un 'callback' en JavaScript?",
+                options: [
+                    "Una función que se pasa como argumento a otra función",
+                    "Un tipo de error",
+                    "Una función de reinicio del servidor",
+                    "Un tipo de variable"
+                ],
+                answer: 0
+            }
         ];
 
+        // Referencias del DOM
         const questionElement = document.getElementById('question');
         const optionButtons = Array.from(document.getElementsByClassName('option'));
-        let currentQuestionIndex = 0;
+        const scoreElement = document.getElementById('score');
+        const correctElement = document.getElementById('correct');
+        const incorrectElement = document.getElementById('incorrect');
 
+        let currentQuestionIndex = 0;
+        let correctAnswers = 0;
+        let incorrectAnswers = 0;
+
+        // Cargar Pregunta
         function loadQuestion() {
             const currentQuestion = questions[currentQuestionIndex];
             questionElement.textContent = currentQuestion.question;
-            questionElement.classList.add("fade-in");
             optionButtons.forEach((button, index) => {
                 button.textContent = currentQuestion.options[index];
-                button.className = "option"; 
+                button.className = "option"; // Reset estilos
                 button.onclick = () => checkAnswer(index);
             });
         }
 
+        // Verificar Respuesta
         function checkAnswer(selectedIndex) {
             const correctIndex = questions[currentQuestionIndex].answer;
             optionButtons[selectedIndex].classList.add(
                 selectedIndex === correctIndex ? "correct" : "incorrect"
             );
 
+            // Contar Respuestas
             if (selectedIndex === correctIndex) {
-                alert("¡Correcto! 🚀");
+                correctAnswers++;
             } else {
-                alert("¡Incorrecto! La respuesta correcta era: " + 
-                    questions[currentQuestionIndex].options[correctIndex]);
+                incorrectAnswers++;
             }
 
+            // Actualizar Puntajes
+            scoreElement.textContent = Puntos: ${correctAnswers + incorrectAnswers};
+            correctElement.textContent = Respuestas Correctas: ${correctAnswers};
+            incorrectElement.textContent = Respuestas Incorrectas: ${incorrectAnswers};
+
+            // Siguiente Pregunta
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
-                setTimeout(loadQuestion, 1000);
+                setTimeout(() => loadQuestion(), 1000);
             } else {
-                setTimeout(() => {
-                    alert("¡Juego terminado! 🎉");
-                    currentQuestionIndex = 0; 
-                    loadQuestion();
-                }, 1000);
+                setTimeout(() => alert(Juego Terminado. Puntaje Final: ${correctAnswers} Correctas y ${incorrectAnswers} Incorrectas), 1000);
             }
         }
 
+        
+        
+
+        // Inicializar juego
         loadQuestion();
     </script>
 </body>
